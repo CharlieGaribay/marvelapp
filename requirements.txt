@@ -21,4 +21,5 @@ starlette==0.19.1
 toml==0.10.2
 typing-extensions==4.3.0
 urllib3==1.26.10
+uvicorn==0.18.2
 virtualenv==20.15.1

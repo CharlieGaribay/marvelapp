@@ -1,10 +1,18 @@
 from dotenv import load_dotenv
+import requests
 import os
 
 load_dotenv()
 from fastapi import FastAPI
-from marvel_connection import connect
+# from marvel_connection import connect
+MARVEL_BASE_URL = os.environ["MARVEL_BASE_URL"]
 
+def connect(endpoint: str, params: dict, request_type: str = "GET"):
+  url = f"{MARVEL_BASE_URL}{endpoint}?{params}" if params else f"{MARVEL_BASE_URL}{endpoint}"
+  response = requests.request(request_type, url)
+  response.raise_for_status()
+  return response
+  
 app = FastAPI()
 
 MARVEL_TS = os.environ["MARVEL_TS"]
